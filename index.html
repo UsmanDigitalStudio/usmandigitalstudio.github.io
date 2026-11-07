@@ -119,6 +119,16 @@ nav a:hover{color:#d6b77d}
 .order-panel .order-email{font-size:13px;margin:10px auto}
 .order-email a{color:#8b642f;font-weight:bold}
 .order-panel .order-note{font-size:11px;color:#89919a;margin:8px auto 0}
+.order-form{max-width:680px;margin:28px auto 0;text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.order-field{display:flex;flex-direction:column;gap:7px}
+.order-field.full{grid-column:1/-1}
+.order-field label{font-size:12px;font-weight:bold;color:#39495a}
+.order-field input,.order-field select,.order-field textarea{width:100%;padding:13px 14px;border:1px solid #d9d2c6;background:#fcfbf8;color:#172536;font:14px Arial,Helvetica,sans-serif;border-radius:0;outline:none}
+.order-field input:focus,.order-field select:focus,.order-field textarea:focus{border-color:#b58b4d;box-shadow:0 0 0 3px #c6a36b22}
+.order-field textarea{min-height:145px;resize:vertical}
+.order-submit{grid-column:1/-1;border:0;cursor:pointer;font: bold 12px Arial,Helvetica,sans-serif;letter-spacing:.5px}
+.order-form-note{grid-column:1/-1;text-align:center;color:#89919a;font-size:11px}
+@media(max-width:520px){.order-form{grid-template-columns:1fr;gap:14px}.order-field.full,.order-submit,.order-form-note{grid-column:1}}
 .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}
 .about-art{min-height:350px;background:radial-gradient(circle,#49657a,#101b2b 70%);display:grid;place-items:center}
 .about-art span{font-family:Georgia;font-size:130px;color:#d6b77d;border:1px solid #d6b77d;border-radius:50%;width:230px;height:230px;display:grid;place-items:center}
@@ -320,10 +330,10 @@ footer{background:#eae4d8;padding:30px 0}
   <h2 class="section-title">Creative Services</h2>
   <p class="intro">Professional creative solutions for brands, businesses and digital creators.</p>
   <div class="services-grid">
-   <article class="service-card"><h3>Logo Design & Branding</h3><p>Unique visual identities, elegant logos and premium branding concepts for businesses.</p><a class="service-order" href="mailto:uu482035@gmail.com?subject=Project%20Inquiry%20%E2%80%93%20Logo%20Design%20%26%20Branding%20%7C%20Usman%20Creative%20Studio&body=Hello%20Usman%20Creative%20Studio%2C%0A%0AI%20would%20like%20to%20discuss%20a%20custom%20design%20project.%0A%0AName%3A%0AService%3A%20Logo%20Design%20%26%20Branding%0ABudget%3A%0ARequired%20delivery%20date%3A%0AProject%20details%3A%0APreferred%20style%20%2F%20references%3A%0A%0AThank%20you.">Order this service ↗</a></article>
-   <article class="service-card"><h3>AI Artwork</h3><p>Original AI-assisted artwork, imaginative illustrations and custom visual concepts.</p><a class="service-order" href="mailto:uu482035@gmail.com?subject=Project%20Inquiry%20%E2%80%93%20Custom%20AI%20Artwork%20%7C%20Usman%20Creative%20Studio&body=Hello%20Usman%20Creative%20Studio%2C%0A%0AI%20would%20like%20to%20discuss%20a%20custom%20design%20project.%0A%0AName%3A%0AService%3A%20Custom%20AI%20Artwork%0ABudget%3A%0ARequired%20delivery%20date%3A%0AProject%20details%3A%0APreferred%20style%20%2F%20references%3A%0A%0AThank%20you.">Order this service ↗</a></article>
-   <article class="service-card"><h3>Digital Wallpapers</h3><p>Premium 4K desktop wallpapers and futuristic digital collections.</p><a class="service-order" href="mailto:uu482035@gmail.com?subject=Project%20Inquiry%20%E2%80%93%20Custom%20Digital%20Wallpaper%20%7C%20Usman%20Creative%20Studio&body=Hello%20Usman%20Creative%20Studio%2C%0A%0AI%20would%20like%20to%20discuss%20a%20custom%20design%20project.%0A%0AName%3A%0AService%3A%20Custom%20Digital%20Wallpaper%0ABudget%3A%0ARequired%20delivery%20date%3A%0AProject%20details%3A%0APreferred%20style%20%2F%20references%3A%0A%0AThank%20you.">Order this service ↗</a></article>
-   <article class="service-card"><h3>3D Visual Design</h3><p>Elegant 3D compositions, glass visuals, product concepts and abstract artwork.</p><a class="service-order" href="mailto:uu482035@gmail.com?subject=Project%20Inquiry%20%E2%80%93%203D%20Visual%20Design%20%7C%20Usman%20Creative%20Studio&body=Hello%20Usman%20Creative%20Studio%2C%0A%0AI%20would%20like%20to%20discuss%20a%20custom%20design%20project.%0A%0AName%3A%0AService%3A%203D%20Visual%20Design%0ABudget%3A%0ARequired%20delivery%20date%3A%0AProject%20details%3A%0APreferred%20style%20%2F%20references%3A%0A%0AThank%20you.">Order this service ↗</a></article>
+   <article class="service-card"><h3>Logo Design & Branding</h3><p>Unique visual identities, elegant logos and premium branding concepts for businesses.</p><a class="service-order" href="#order" data-service="Logo Design &amp; Branding">Order this service ↓</a></article>
+   <article class="service-card"><h3>AI Artwork</h3><p>Original AI-assisted artwork, imaginative illustrations and custom visual concepts.</p><a class="service-order" href="#order" data-service="AI Artwork">Order this service ↓</a></article>
+   <article class="service-card"><h3>Digital Wallpapers</h3><p>Premium 4K desktop wallpapers and futuristic digital collections.</p><a class="service-order" href="#order" data-service="Digital Wallpapers">Order this service ↓</a></article>
+   <article class="service-card"><h3>3D Visual Design</h3><p>Elegant 3D compositions, glass visuals, product concepts and abstract artwork.</p><a class="service-order" href="#order" data-service="3D Visual Design">Order this service ↓</a></article>
   </div>
  </div>
 </section>
@@ -332,13 +342,47 @@ footer{background:#eae4d8;padding:30px 0}
  <div class="container order-panel">
   <div class="eyebrow">Start Your Project</div>
   <h2 class="section-title">Order Your Custom Design</h2>
-  <p>Have an idea for your business or personal project? Tell us what you need, your preferred style, budget and deadline. We will reply by email to discuss the details, price and delivery time.</p>
-  <div class="order-services">
-   <span>Logo Design</span><span>Luxury Branding</span><span>3D Artwork</span><span>Custom Digital Wallpaper</span>
-  </div>
-  <a class="btn order-btn" href="mailto:uu482035@gmail.com?subject=Project%20Inquiry%20%E2%80%93%20Custom%20Design%20Project%20%7C%20Usman%20Creative%20Studio&body=Hello%20Usman%20Creative%20Studio%2C%0A%0AI%20would%20like%20to%20discuss%20a%20custom%20design%20project.%0A%0AName%3A%0AService%3A%20Custom%20Design%20Project%0ABudget%3A%0ARequired%20delivery%20date%3A%0AProject%20details%3A%0APreferred%20style%20%2F%20references%3A%0A%0AThank%20you.">Send Your Project Inquiry ↗</a>
-  <p class="order-email">Or email us directly: <a href="mailto:uu482035@gmail.com">uu482035@gmail.com</a></p>
-  <p class="order-note">Your email app will open with a prepared inquiry. Review your details and press Send to contact the studio.</p>
+  <p>Complete the form below with your project details. Your inquiry will be sent directly to Usman Creative Studio by email.</p>
+  <form class="order-form" action="https://formsubmit.co/uu482035@gmail.com" method="POST">
+   <input type="hidden" name="_subject" value="New Project Order - Usman Creative Studio">
+   <input type="hidden" name="_template" value="table">
+   <input type="hidden" name="_next" value="https://usmandigitalstudio.github.io/thank-you.html">
+   <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+   <div class="order-field">
+    <label for="customer-name">Your Name *</label>
+    <input id="customer-name" type="text" name="Name" placeholder="Enter your name" required maxlength="100">
+   </div>
+   <div class="order-field">
+    <label for="customer-email">Your Email *</label>
+    <input id="customer-email" type="email" name="Email" placeholder="you@example.com" required maxlength="150">
+   </div>
+   <div class="order-field">
+    <label for="requested-service">Select a Service *</label>
+    <select id="requested-service" name="Service" required>
+     <option value="">Choose a service</option>
+     <option>Logo Design &amp; Branding</option>
+     <option>AI Artwork</option>
+     <option>Digital Wallpapers</option>
+     <option>3D Visual Design</option>
+     <option>Other / Not Sure Yet</option>
+    </select>
+   </div>
+   <div class="order-field">
+    <label for="project-budget">Your Budget *</label>
+    <input id="project-budget" type="text" name="Budget" placeholder="e.g. $20–$50 or PKR 5,000" required maxlength="80">
+   </div>
+   <div class="order-field full">
+    <label for="delivery-date">Preferred Delivery Date</label>
+    <input id="delivery-date" type="date" name="Preferred Delivery Date">
+   </div>
+   <div class="order-field full">
+    <label for="project-details">Project Details *</label>
+    <textarea id="project-details" name="Project Details" placeholder="Describe what you need, your ideas, preferred colours, style and any reference links..." required minlength="10" maxlength="5000"></textarea>
+   </div>
+   <button class="btn order-submit" type="submit">Submit Your Order ↗</button>
+   <p class="order-form-note">* Required fields. Your details will be sent securely to our form service and forwarded to our studio email.</p>
+  </form>
+  <p class="order-email">Prefer email? <a href="mailto:uu482035@gmail.com">uu482035@gmail.com</a></p>
  </div>
 </section>
 
@@ -385,6 +429,14 @@ footer{background:#eae4d8;padding:30px 0}
 <script>
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+const orderServiceSelect = document.getElementById("requested-service");
+document.querySelectorAll(".service-order[data-service]").forEach((link) => {
+ link.addEventListener("click", () => {
+  orderServiceSelect.value = link.dataset.service;
+ });
+});
+
 
 const artworkLightbox = document.getElementById("artworkLightbox");
 const lightboxImage = document.getElementById("lightboxImage");
