@@ -343,11 +343,10 @@ footer{background:#eae4d8;padding:30px 0}
   <div class="eyebrow">Start Your Project</div>
   <h2 class="section-title">Order Your Custom Design</h2>
   <p>Complete the form below with your project details. Your inquiry will be sent directly to Usman Creative Studio by email.</p>
-  <form class="order-form" action="https://api.web3forms.com/submit" method="POST">
+  <form class="order-form" id="order-form" action="https://api.web3forms.com/submit" method="POST">
    <input type="hidden" name="access_key" value="86a8db04-9b0a-469a-abfa-49b3e9087a6a">
    <input type="hidden" name="subject" value="New Project Order - Usman Creative Studio">
    <input type="hidden" name="from_name" value="Usman Creative Studio Website">
-   <input type="hidden" name="redirect" value="https://usmandigitalstudio.github.io/thank-you.html">
    <input type="checkbox" name="botcheck" style="display:none">
    <div class="order-field">
     <label for="customer-name">Your Name *</label>
@@ -427,9 +426,78 @@ footer{background:#eae4d8;padding:30px 0}
  </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
 <script>
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Initialize EmailJS for customer confirmation emails.
+emailjs.init({ publicKey: "vyIpp4nyhDu1eCPdH" });
+
+// Keep the existing Web3Forms owner notification and send a separate
+// EmailJS auto-reply to the customer after Web3Forms confirms receipt.
+const orderForm = document.getElementById("order-form");
+if (orderForm) {
+ orderForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const submitButton = orderForm.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = "SENDING...";
+
+  const formData = new FormData(orderForm);
+  const customerName = String(formData.get("Name") || "").trim();
+  const customerEmail = String(formData.get("Email") || "").trim();
+  const requestedService = String(formData.get("Service") || "").trim();
+  const projectBudget = String(formData.get("Budget") || "").trim();
+  const deliveryDate = String(formData.get("Preferred Delivery Date") || "").trim();
+  const projectDetails = String(formData.get("Project Details") || "").trim();
+
+  try {
+   const web3Response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { Accept: "application/json" },
+    body: formData
+   });
+   const web3Result = await web3Response.json();
+
+   if (!web3Response.ok || web3Result.success !== true) {
+    throw new Error(web3Result.message || web3Result.error || "Your order could not be submitted. Please try again.");
+   }
+
+   // EmailJS template fields match the saved Auto-Reply template.
+   // Alternate underscore keys are included for convenient template use too.
+   try {
+    await emailjs.send("service_9j64i86", "template_fmxytqj", {
+     Name: customerName,
+     Email: customerEmail,
+     Service: requestedService,
+     Budget: projectBudget,
+     "Preferred Delivery Date": deliveryDate || "Not specified",
+     "Project Details": projectDetails,
+     Delivery_Date: deliveryDate || "Not specified",
+     Project_Details: projectDetails,
+     name: customerName,
+     email: customerEmail,
+     service: requestedService,
+     budget: projectBudget,
+     delivery_date: deliveryDate || "Not specified",
+     project_details: projectDetails
+    });
+   } catch (autoReplyError) {
+    console.error("Customer auto-reply could not be sent:", autoReplyError);
+   }
+
+   window.location.href = "https://usmandigitalstudio.github.io/thank-you.html";
+  } catch (submitError) {
+   console.error("Order submission error:", submitError);
+   alert(submitError.message || "Something went wrong. Please try again.");
+   submitButton.disabled = false;
+   submitButton.textContent = originalButtonText;
+  }
+ });
+}
 
 const orderServiceSelect = document.getElementById("requested-service");
 document.querySelectorAll(".service-order[data-service]").forEach((link) => {
